@@ -20,7 +20,7 @@ function cx__search() {
                 fi
 
                 # Proceed to search for the alias if validation is successful
-                search_by_keyword "$alias"
+                search_by_keyword $alias
                 ;;
         esac
     else
