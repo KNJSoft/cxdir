@@ -41,7 +41,7 @@ function search_by_keyword() {
     # Search in the CSV file for aliases matching the keyword
     local results
     
-    results=$(grep -i "${alias}" | awk -F "," '{print "Alias: " $2 ", Path: " $3}')
+    results=$(grep -i "${alias}" "$csv_file_path" | awk -F "," '{print "Alias: " $2 ", Path: " $3}')
 
     if [[ -z "$results" ]]; then
         echo "No aliases found matching the keyword: '$alias'."
