@@ -2,6 +2,7 @@
 function cx__search() {
     keyword=$1
     echo "No1: $1, No2: $2, No3: $3 "
+    echo "No1: $command, No2: $alias, No3: $option "
 
     # Validate the keyword
     validate_keyword $keyword
