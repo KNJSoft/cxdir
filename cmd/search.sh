@@ -1,3 +1,5 @@
+# Path to the CSV file
+csv_file_path="saved.csv"
 # manage cx commands
 function cx__search() {
     local keyword="$1"
