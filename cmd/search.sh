@@ -1,13 +1,11 @@
-# Path to the CSV file
-# csv_file_path="saved.csv"
 # manage cx commands
 function cx__search() {
-    local keyword="$1"
+    keyword=$1
     echo "No1: $1, No2: $2, No3: $3 "
 
     # Validate the keyword
-    validate_keyword "$keyword"
-    local validation_result=$?
+    validate_keyword $keyword
+    validation_result=$?
 
     # If validation fails, return without searching
     if [[ $validation_result -ne 0 ]]; then
@@ -20,7 +18,7 @@ function cx__search() {
 
 # Function to search for aliases based on a keyword
 function search_by_keyword() {
-    local keyword="$1"
+    keyword="$1"
     
     if [[ -z "$keyword" ]]; then
         echo "Please provide a keyword to search for aliases."
@@ -28,7 +26,7 @@ function search_by_keyword() {
     fi
 
     # Search in the CSV file for aliases matching the keyword
-    local results
+    
     results=$(grep -i "${keyword}" "$csv_file_path" | awk -F "," '{print "Alias: " $2 ", Path: " $3}')
 
     if [[ -z "$results" ]]; then
@@ -40,7 +38,7 @@ function search_by_keyword() {
 
 # Function to validate the keyword
 function validate_keyword() {
-    local keyword="$1"
+    keyword="$1"
 
     # Check if the keyword is empty
     if [[ -z "$keyword" ]]; then
