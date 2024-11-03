@@ -1,26 +1,32 @@
 # manage cx commands
 function cx__search() {
-
+   
+    # Check if the alias is provided
     if [[ -n $alias ]]; then 
         case $alias in
-            # user want help about the `cx update` command 
-                "--help") show_help_search
-                exit 0;;  
+            # User wants help about the search command
+            "--help") 
+                show_help_search
+                return 0  # Exit the function after showing help
+                ;;  
+            *) 
+                # Proceed with validating the keyword
+                validate_keyword "$alias"
+                local validation_result=$?
+
+                # If validation fails, return without searching
+                if [[ $validation_result -ne 0 ]]; then
+                    return 1
+                fi
+
+                # Proceed to search for the alias if validation is successful
+                search_by_alias "$alias"
+                ;;
         esac
-    fi
-    # echo "No1: $command, No2: $alias, No3: $option "
-
-    # Validate the keyword
-    validate_keyword $alias
-    validation_result=$?
-
-    # If validation fails, return without searching
-    if [[ $validation_result -ne 0 ]]; then
+    else
+        echo "Error: No keyword provided. Use 'cx search --help' for usage information."
         return 1
     fi
-
-    # Call the search function with the validated keyword
-    search_by_keyword "$alias"
 }
 
 # Function to search for aliases based on a keyword
