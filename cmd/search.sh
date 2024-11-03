@@ -2,11 +2,12 @@
 # csv_file_path="saved.csv"
 # manage cx commands
 function cx__search() {
-    keyword="$1"
+    local keyword="$1"
+    echo "No1: $1, No2: $2, No3: $3 "
 
     # Validate the keyword
     validate_keyword "$keyword"
-    validation_result=$?
+    local validation_result=$?
 
     # If validation fails, return without searching
     if [[ $validation_result -ne 0 ]]; then
@@ -19,7 +20,7 @@ function cx__search() {
 
 # Function to search for aliases based on a keyword
 function search_by_keyword() {
-    keyword="$1"
+    local keyword="$1"
     
     if [[ -z "$keyword" ]]; then
         echo "Please provide a keyword to search for aliases."
@@ -39,7 +40,7 @@ function search_by_keyword() {
 
 # Function to validate the keyword
 function validate_keyword() {
-    keyword="$1"
+    local keyword="$1"
 
     # Check if the keyword is empty
     if [[ -z "$keyword" ]]; then
