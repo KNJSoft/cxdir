@@ -20,7 +20,7 @@ function cx__search() {
                 fi
 
                 # Proceed to search for the alias if validation is successful
-                search_by_alias "$alias"
+                search_by_keyword "$alias"
                 ;;
         esac
     else
@@ -84,16 +84,16 @@ function validate_keyword() {
 
 function show_help_search () {
     echo ""
-    echo $cyan"NAME:"$defaultColor
-    echo -e "\t cx search - search for a shortcut by keyword"
+    echo "NAME: Search by keyword"
+    echo -e "\t cx search <keyword> - search for a shortcut by keyword"
     echo ""
-    echo $cyan"DESCRIPTION:"$defaultColor
+    echo "DESCRIPTION:"
     echo -e "\t Use this command to find a shortcut based on the provided keyword."
     echo ""
-    echo $cyan"USAGE:"$defaultColor
+    echo "USAGE:"
     echo -e "\t cx search [keyword]"
     echo ""
-    echo $cyan"EXAMPLES:"$defaultColor
+    echo "EXAMPLES:"
     echo -e "\t cx search doc     # Searches for shortcuts containing 'doc'"
     echo -e "\t cx search project # Searches for shortcuts related to 'project'"
     echo ""
