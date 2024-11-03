@@ -1,7 +1,13 @@
 # manage cx commands
 function cx__search() {
 
-    
+    if [[ -n $alias ]]; then 
+        case $alias in
+            # user want help about the `cx update` command 
+                "--help") show_help_search
+                exit 0;;  
+        esac
+    fi
     # echo "No1: $command, No2: $alias, No3: $option "
 
     # Validate the keyword
@@ -27,8 +33,9 @@ function search_by_keyword() {
     fi
 
     # Search in the CSV file for aliases matching the keyword
+    local results
     
-    results=$(grep -i "${alias}" "$csv_file_path" | awk -F "," '{print "Alias: " $2 ", Path: " $3}')
+    results=$(grep -i "${alias}" | awk -F "," '{print "Alias: " $2 ", Path: " $3}')
 
     if [[ -z "$results" ]]; then
         echo "No aliases found matching the keyword: '$alias'."
@@ -67,4 +74,21 @@ function validate_keyword() {
 
     # If all checks pass, return 0
     return 0
+}
+
+function show_help_search () {
+    echo ""
+    echo $cyan"NAME:"$defaultColor
+    echo -e "\t cx search - search for a shortcut by keyword"
+    echo ""
+    echo $cyan"DESCRIPTION:"$defaultColor
+    echo -e "\t Use this command to find a shortcut based on the provided keyword."
+    echo ""
+    echo $cyan"USAGE:"$defaultColor
+    echo -e "\t cx search [keyword]"
+    echo ""
+    echo $cyan"EXAMPLES:"$defaultColor
+    echo -e "\t cx search doc     # Searches for shortcuts containing 'doc'"
+    echo -e "\t cx search project # Searches for shortcuts related to 'project'"
+    echo ""
 }
