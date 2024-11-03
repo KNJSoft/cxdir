@@ -14,7 +14,7 @@ function cx__search() {
     fi
 
     # Call the search function with the validated keyword
-    search_by_alias "$alias"
+    search_by_keyword "$alias"
 }
 
 # Function to search for aliases based on a keyword
